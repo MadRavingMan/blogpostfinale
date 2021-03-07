@@ -1,0 +1,23 @@
+<div class="card mb-3" *ngIf="post$ | async as post">
+  <img class="card-img-top" [src]="post.img" alt="{{ post.title }}" />
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.content }}</p>
+    <p class="card-text">
+      <small class="text-muted">Written by {{ post.author }}</small>
+      <br />
+      <small class="text-muted">Likes {{ post.likes }}</small>
+    </p>
+    <div>
+      <button (click)="addLike(post)">Like</button>
+      <button (click)="removeLike(post)">Hate</button>
+    </div>
+    <app-create-comment postId="{{ post.id }}"></app-create-comment>
+    <ng-container *ngIf="comments$">
+      <app-comment-details
+        *ngFor="let comment of comments$ | async as comments"
+        [comment]="comment"
+      ></app-comment-details>
+    </ng-container>
+  </div>
+</div>

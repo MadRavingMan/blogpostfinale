@@ -1,0 +1,13 @@
+<div class="media">
+  <ng-container *ngIf="user">
+    <img [src]="user.img" alt="{{ user.firstName }} {{ user.lastName }}" />
+    <div class="media-body">
+      <h4>
+        <a [routerLink]="['/users', user.id]"
+          >{{ user.firstName }} {{ user.lastName }}</a
+        >
+      </h4>
+      <p>{{ user.email }}</p>
+    </div>
+  </ng-container>
+</div>

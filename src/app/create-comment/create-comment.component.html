@@ -1,0 +1,19 @@
+<form [formGroup]="postCommentForm" (submit)="submitComment()">
+  <div class="form-group mt-3">
+    <label for="content">Write comment here:</label>
+    <input
+      class="form-control"
+      id="content"
+      type="text"
+      formControlName="content"
+    />
+    <div [hidden]="content.valid || content.pristine">
+      <div *ngIf="content.errors?.required">Comment content is required.</div>
+      <div *ngIf="content.errors?.minlength">Comment too short.</div>
+    </div>
+  </div>
+  <button class="btn btn-primary">Submit!</button>
+  <button class="btn btn-secondary" type="button" (click)="reset()">
+    Reset!
+  </button>
+</form>
